@@ -321,3 +321,76 @@ footer { border-top: 1px solid var(--border); padding: 3rem 1.5rem; }
 /* fade-up entrance */
 @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 .animate-up { animation: fadeUp 0.8s ease-out both; }
+
+/* ============================================== */
+/* ===== MOBILE FIXES (responsividade)      ===== */
+/* ============================================== */
+
+/* Garante que nada estoure horizontalmente */
+html, body { overflow-x: hidden; max-width: 100%; }
+
+/* --- Navbar / Mobile menu --- */
+.navbar { background: rgba(12, 20, 36, 0.85); backdrop-filter: blur(20px); }
+.nav-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: transparent; border: 1px solid var(--border);
+  border-radius: 0.5rem; height: 40px; width: 40px; color: var(--fg);
+  cursor: pointer; z-index: 60;
+}
+@media (min-width: 1024px) { .nav-toggle { display: none; } }
+
+.mobile-menu {
+  position: absolute; top: 64px; left: 0; right: 0;
+  background: rgba(12, 20, 36, 0.98);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: none; max-height: calc(100vh - 64px); overflow-y: auto;
+  z-index: 55;
+}
+.mobile-menu.open { display: block; }
+.mobile-menu ul { padding: 1rem 1.5rem; display: flex; flex-direction: column; gap: 0.25rem; }
+.mobile-menu li a { display: block; padding: 0.75rem 0; font-size: 1rem; color: var(--fg); border-bottom: 1px solid rgba(37,52,91,0.4); }
+.mobile-menu li:last-child a { border-bottom: none; }
+
+/* --- Hero stats: 3 em linha no mobile --- */
+.hero-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1rem; margin-top: 2.5rem;
+}
+.hero-stats > div { min-width: 0; }
+.hero-stats .v { font-size: clamp(1.4rem, 5vw, 1.875rem); }
+.hero-stats .l { font-size: 0.625rem; letter-spacing: 0.15em; }
+@media (min-width: 640px) {
+  .hero-stats { display: flex; gap: 2.5rem; }
+}
+
+/* --- Hero image: não estourar pra baixo no mobile --- */
+.hero { padding-top: 6rem; padding-bottom: 3rem; min-height: auto; }
+@media (min-width: 1024px) { .hero { min-height: 100vh; padding-bottom: 0; } }
+.hero-img img {
+  max-height: 60vw;
+  object-fit: contain;
+}
+@media (min-width: 1024px) {
+  .hero-img img { max-height: none; max-width: 36rem; }
+}
+
+/* --- Cards de membros: não estourar a coluna do grid --- */
+.cards-grid { min-width: 0; }
+.cards-grid > * { min-width: 0; }
+.member-card { min-width: 0; overflow: hidden; }
+.member-card .name {
+  min-width: 0; max-width: 100%;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.member-card .course, .member-card .area {
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* --- Section padding mobile --- */
+@media (max-width: 767px) {
+  .section { padding: 4rem 1rem; }
+  .section-head { margin-bottom: 2.5rem; }
+  .container { padding: 0 1rem; }
+}
